@@ -39,7 +39,7 @@ class GetHandler(BaseHTTPRequestHandler):
                         continue
 
                     trip_id = e.trip_update.trip.trip_id
-                    arr_time += hash(trip_id) % 10*60
+                    arr_time += hash(trip_id) % 5*60
                     start_date = e.trip_update.trip.start_date
                     direction = trip_id.split('..')[-1]
                     direction_name = ''
@@ -57,6 +57,8 @@ class GetHandler(BaseHTTPRequestHandler):
                         'time': arr_time,
                         'name': name
                     })
+        d["Fulton St"]["Uptown"] = sorted(d["Fulton St"]["Uptown"], key=lambda r:r["time"])[:4]
+        d["Fulton St"]["Downtown"] = sorted(d["Fulton St"]["Downtown"], key=lambda r:r["time"])[:4]
         return d
 
     def do_GET(self):

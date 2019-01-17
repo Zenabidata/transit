@@ -4,47 +4,39 @@
 
 This web application will make a web request every 15 seconds. It will be expecting a JSON object similar to this one:
 ```
-{"Train Stop Name": [
-        {
-        "Uptown":
-            [
-                {
-                    "line": "C",
-                    "name": "168 St",
-                    "time": 1547683200
-                }
-            ]    
-        },
-        {
-            "Lefttown":
-                [
-                    {
-                        "line": "S",
-                        "name": "Dab on Em St",
-                        "time": 1547682600
-                    },
-                    {
-                        "line": "C",
-                        "name": "168 St",
-                        "time": 1547683200
-                    }
-                ]    
-        },
-        {
-            "Downtown":
-                [
-                    {
-                        "line": "S",
-                        "name": "Dab on Em St",
-                        "time": 1547682600
-                    },
-                    {
-                        "line": "C",
-                        "name": "168 St",
-                        "time": 1547683200
-                    }
-                ]    
-        }
+{
+    "Train Stop Name": [
+        "Uptown": [
+            {
+                "line": "C",
+                "name": "168 St",
+                "time": 1547683200
+            }
+        ],
+        "Lefttown": [
+            {
+                "line": "S",
+                "name": "Dab on Em St",
+                "time": 1547682600
+            },
+            {
+                "line": "C",
+                "name": "168 St",
+                "time": 1547683200
+            }
+        ],
+        "Downtown": [
+            {
+                "line": "S",
+                "name": "Dab on Em St",
+                "time": 1547682600
+            },
+            {
+                "line": "C",
+                "name": "168 St",
+                "time": 1547683200
+            }
+        ]    
     ]
 }
 ```
