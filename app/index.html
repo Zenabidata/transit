@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)http://subwaytime.mta.info/index.html#/app/subwaytime/C/A38/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+        
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+<!--         <meta http-equiv="Content-Security-Policy" 
+         content="default-src *; 
+                  style-src * 'self' 'unsafe-inline' 'unsafe-eval'; 
+                  script-src * 'self' 'unsafe-inline' 'unsafe-eval';"> -->
+
+                   <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+        <title>New Subway Time</title>
+        <!-- <link href="lib/ionic/css/ionic.css" rel="stylesheet"/>-->
+        <!--
+            IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+            <link href="css/ionic.app.css" rel="stylesheet"/>
+        -->
+        <link href="./assets/ionic.app.css" rel="stylesheet">
+        <link href="./assets/style.css" rel="stylesheet"> 
+
+
+
+        <script src="./assets/jquery.min.js"></script>
+        <script src="./assets/plugin.js"></script>
+    </head>
+    <body ng-app="subwayTime" ng-controller="appCtrl" class="grade-a platform-browser platform-win32 platform-ready">
+
+    <div class="bar bar-loading bar-assertive blink_me ng-hide" ng-show="isOffline">Limited or No Connectivity</div>
+<!-- <div class="item blink_me" style="color:red;" ng-show="isOffline">Limited or No Connectivity</div> -->
+
+
+        <ion-nav-view class="view-container" nav-view-transition="ios" nav-view-direction="none" nav-swipe="">
+        <ion-side-menus enable-menu-with-back-views="true" class="pane view" abstract="true" nav-view="active" style="opacity: 1; transform: translate3d(0%, 0px, 0px);">
+    <ion-side-menu-content drag-content="false" class="menu-content pane">
+        <ion-nav-bar class="bar-positive nav-bar-container" nav-bar-transition="ios" nav-bar-direction="none" nav-swipe="">
+            <ion-nav-back-button class="hide"></ion-nav-back-button>
+            <ion-nav-buttons side="left" class="hide"></ion-nav-buttons>
+        <div class="nav-bar-block" nav-bar="cached"><ion-header-bar class="bar-positive bar bar-header" align-title="center"><div class="buttons buttons-left header-item"><span class="left-buttons">
+                </button>
+            </span></div><div class="title title-center header-item"></div></ion-header-bar></div><div class="nav-bar-block" nav-bar="active"><ion-header-bar class="bar-positive bar bar-header" align-title="center"><button ng-click="$ionicGoBack()" class="button back-button hide buttons button-clear header-item"></i> BACK
+            </button><div class="buttons buttons-left header-item"><span class="left-buttons">
+                </button>
+            </span></div><div class="title title-center header-item" style="left: 45px; right: 45px;">New Subway Time</div></ion-header-bar></div></ion-nav-bar>
+        <ion-nav-view name="menuContent" class="view-container" nav-view-transition="ios" nav-view-direction="none" nav-swipe="">
+        <ion-view view-title="Subway Time" class="pane" state="app.subwayTime" nav-view="active" style="opacity: 1; transform: translate3d(0%, 0px, 0px);">
+    <ion-content class="scroll-content ionic-scroll  has-header"><div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+
+
+<!-- <div class="bar bar-loading bar-assertive" ng-if="downloading">
+      Loading...
+    </div> -->
+        <div class="card ng-hide" ng-show="serverError &amp;&amp; !isOffline " style="">
+
+            <div class="card">
+                <div class="item item-divider item-icon-left bar bar-energized" style="background-color: #f6a704;">
+                Data is not available
+            </div>
+            <div class="list card item-text-wrap">
+                The data is not available at this time. <br>
+                Please try again later.
+            </div>
+            </div>
+
+        </div>
+      <!-- loading -->
+       <div class="spinner ng-hide" ng-show="downloading &amp;&amp; !isOffline " style="">
+            <ion-spinner icon="circles" class="m-spinner spinner-energized spinner spinner-circles"><svg viewBox="0 0 64 64"><g><circle r="5" cx="24" cy="0" transform="translate(32,32)" stroke-width="0"><animate attributeName="fill-opacity" dur="750ms" values="1;.9;.85;.7;.4;.3;.3;.3;1" repeatCount="indefinite"></animate></circle><circle r="5" cx="16.970562748477143" cy="16.97056274847714" transform="translate(32,32)" stroke-width="0"><animate attributeName="fill-opacity" dur="750ms" values=".3;1;.9;.85;.7;.4;.3;.3;.3" repeatCount="indefinite"></animate></circle><circle r="5" cx="1.4695761589768238e-15" cy="24" transform="translate(32,32)" stroke-width="0"><animate attributeName="fill-opacity" dur="750ms" values=".3;.3;1;.9;.85;.7;.4;.3;.3" repeatCount="indefinite"></animate></circle><circle r="5" cx="-16.97056274847714" cy="16.970562748477143" transform="translate(32,32)" stroke-width="0"><animate attributeName="fill-opacity" dur="750ms" values=".3;.3;.3;1;.9;.85;.7;.4;.3" repeatCount="indefinite"></animate></circle><circle r="5" cx="-24" cy="2.9391523179536475e-15" transform="translate(32,32)" stroke-width="0"><animate attributeName="fill-opacity" dur="750ms" values=".4;.3;.3;.3;1;.9;.85;.7;.4" repeatCount="indefinite"></animate></circle><circle r="5" cx="-16.970562748477143" cy="-16.97056274847714" transform="translate(32,32)" stroke-width="0"><animate attributeName="fill-opacity" dur="750ms" values=".7;.4;.3;.3;.3;1;.9;.85;.7" repeatCount="indefinite"></animate></circle><circle r="5" cx="-4.408728476930472e-15" cy="-24" transform="translate(32,32)" stroke-width="0"><animate attributeName="fill-opacity" dur="750ms" values=".85;.7;.4;.3;.3;.3;1;.9;.85" repeatCount="indefinite"></animate></circle><circle r="5" cx="16.970562748477136" cy="-16.970562748477143" transform="translate(32,32)" stroke-width="0"><animate attributeName="fill-opacity" dur="750ms" values=".9;.85;.7;.4;.3;.3;.3;1;.9" repeatCount="indefinite"></animate></circle></g></svg></ion-spinner>
+            <!-- <p style="color: red; font-weight: bold;"  >Loading...</p>-->
+        </div>
+      <!-- Network -->
+     
+            <!---->
+
+            <!-- Success -->
+            <!----><div ng-if="(subwayTime.message.errorCode == 0 || subwayTime.message.errorCode == 1) &amp;&amp; !isOffline  &amp;&amp; !serverError" class="" style="">
+               <strong>
+
+                <div class="item" id="street-name">
+                    Fulton St
+
+                    <span class="item-note" id="time-obj">
+                        12:11:42 PM
+                    </span>
+                </div>
+            </strong>
+                <div id="content">
+               
+                </div>
+         <div>
+
+     <!--    </div> -->
+
+
+
+    
+
+</div></div><!----></div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="transform: translate3d(0px, 0px, 0px) scaleY(1); height: 0px;"></div></div></ion-content></ion-view></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left" is-enabled="true" width="275" class="menu menu-left" style="width: 275px;">
+        <ion-header-bar class="bar-positive bar bar-header">
+            <h1 class="title">
+                Menu
+            </h1>
+        </ion-header-bar>
+        <ion-content class="scroll-content ionic-scroll  has-header"><div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+            <ion-list class="disable-user-behavior"><div class="list">
+                <!-- <ion-item menu-close ng-click="login()">
+                    Login
+                </ion-item> -->
+                <ion-item menu-close="" class="item-icon-left item item-complex" href="#/app/home"><a class="item-content" ng-href="#/app/home" href="http://subwaytime.mta.info/index.html#/app/home">
+                  <i class="icon ion-ios-home-outline"></i>Home
+                </a></ion-item>
+
+                 <ion-item menu-close="" class="item-icon-left item item-complex" ui-sref="pagelinks({ pageurl: 1 })" href="#/pagelinks/?pageurl=1"><a class="item-content">
+                  <i class="icon "></i> Service Status 
+                </a></ion-item>
+
+                 <ion-item menu-close="" class="item-icon-left item item-complex" ui-sref="pagelinks({ pageurl: 2 })" href="#/pagelinks/?pageurl=2"><a class="item-content">
+                  <i class="icon "></i>MTA System MAPS
+                </a></ion-item>
+
+
+            </div></ion-list>
+        </div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="transform: translate3d(0px, 0px, 0px) scaleY(1); height: 877px;"></div></div></ion-content>
+    </ion-side-menu>
+</ion-side-menus></ion-nav-view>
+    
+
+
+   
+
+    <!-- // <script src="http://maps.google.com/maps/api/js?key=AIzaSyCmv53KGMV9iEN3HKycggZzKwYg4mO_oc4"></script> -->
+    <!-- Web key -->
+    <!-- // <script src="http://maps.google.com/maps/api/js?key=AIzaSyB1h57kza2M5VatimsfDEG7SKvcX6U6pNA"></script> -->
+    <!-- iOS key -->
+   <!--  <script src="http://maps.google.com/maps/api/js?key=AIzaSyDHIXbD205gbFLTACO3-RHZlooqv_JFbSU"></script> -->
+    <!-- // <script src="http://maps.google.com/maps/api/js"></script> -->
+
+</body></html>
