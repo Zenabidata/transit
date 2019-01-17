@@ -53,6 +53,8 @@ function update(){
 
 function changeStreetName(name){
     $('#street-name').text(name)
+
+    $('#street-name').append(`<span class="item-note">${moment().format("hh:mm:ss A")}</span>`)
 }
 function addSection(sectionName){
     $("#content").append(`<div class='item item-divider'><span>${sectionName}</span></div>`)
