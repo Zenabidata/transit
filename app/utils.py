@@ -138,3 +138,4 @@ def closest_trip_id(trips_df, start_date, rt_trip_id):
                      .idxmin())
   return closest_trip_id
 
+  

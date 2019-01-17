@@ -71,8 +71,8 @@ class GetHandler(BaseHTTPRequestHandler):
                         if arr_time - time.time() > 1920 or arr_time - time.time() < 0:
                             continue
 
-                        arr_time += 10*60*random.random()
                         trip_id = e.trip_update.trip.trip_id
+                        arr_time += hash(trip_id) % 10*60
                         start_date = e.trip_update.trip.start_date
                         direction = trip_id.split('..')[-1]
                         direction_name = ''
