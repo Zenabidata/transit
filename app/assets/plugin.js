@@ -63,7 +63,7 @@ function addStop(stopInfo){
     name = stopInfo.name
     time = unixtomins(stopInfo.time)    
 
-    $("#content").append(`<ion-item class="item row" ng-repeat="item in subwayTime.direction1.times" style=""><div ng-if="item.route == 'FS' || item.route == 'H'" class="col-10 padding"><img ng-src="img/S_sm.png"/></div><div ng-if="item.route != &#39;SI&#39; &amp;&amp;  item.route != &#39;FS&#39; &amp;&amp;  item.route != &#39;H&#39;" class="col-10 padding"><img ng-src="img/C_sm.png" alt="" src="./assets/imgs/${line}_sm.png"></div><div class="col padding item-note">${name}</div><div class="col-20 note padding"><div ng-if="item.minutes  != &#39;Delayed&#39;">${time} mins</div></div></ion-item>`)
+    $("#content").append(`<ion-item class="item row" ng-repeat="item in subwayTime.direction1.times" style=""><div ng-if="item.route == 'FS' || item.route == 'H'" class="col-10 padding"><img src="./assets/imgs/${line}_sm.png"/></div><div ng-if="item.route != &#39;SI&#39; &amp;&amp;  item.route != &#39;FS&#39; &amp;&amp;  item.route != &#39;H&#39;" class="col-10 padding"></div><div class="col padding item-note">${name}</div><div class="col-20 note padding"><div ng-if="item.minutes  != &#39;Delayed&#39;">${time} mins</div></div></ion-item>`)
 } 
 function unixtomins(unix){
     var diff = unix - Math.round(new Date().getTime() / 1000)
