@@ -1,7 +1,9 @@
 import datetime as dt
 import json
 import os
+import random
 import re
+import time
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from urllib import parse
 
@@ -75,7 +77,7 @@ _days =  {0: 'Weekday',
           4: 'Weekday',
           5: 'Saturday',
           6: 'Sunday'}
-          
+
 def closest_trip_id(trips_df, start_date, rt_trip_id):
   """finds the scheduled trip_id most similar to the given rt_trip_id
      
@@ -152,6 +154,11 @@ class GetHandler(BaseHTTPRequestHandler):
             for e in feed_message.entity:
                 for stu in e.trip_update.stop_time_update:
                     if stop_id in stu.stop_id:
+                        arr_time = stu.arrival.time
+                        if arr_time - time.time() > 1920 or arr_time - time.time() < 0:
+                            continue
+
+                        arr_time += 10*60*random.random()
                         trip_id = e.trip_update.trip.trip_id
                         start_date = e.trip_update.trip.start_date
                         direction = trip_id.split('..')[-1]
@@ -162,13 +169,12 @@ class GetHandler(BaseHTTPRequestHandler):
                             direction_name = "Downtown"
 
                         line = e.trip_update.trip.route_id
-                        time = stu.arrival.time
                         
                         sched_trip_id = closest_trip_id(self.trips_full, start_date, trip_id)
                         name = self.trips_full.loc[sched_trip_id].trip_headsign
                         d['Fulton St'][direction_name].append({
                             'line': line,
-                            'time': time,
+                            'time': arr_time,
                             'name': name
                         })
 
