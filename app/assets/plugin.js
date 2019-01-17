@@ -27,25 +27,24 @@ function update(){
     request().then(d=>{
         $('#content').html("")
         if(typeof d != "string"){
-        streetName = Object.keys(d)[0]
+            streetName = Object.keys(d)[0]
 
-        sections = d[streetName]
+            sections = d[streetName]
 
-        for(i in sections){
-            sectionName = Object.keys(sections[i])[0]
-            addSection(sectionName)
+            for(sectionName in sections){
+                addSection(sectionName)
 
-            for(j in sections[i][sectionName]){
-                stop = sections[i][sectionName][j]
-                addStop(stop)
+                for(j in sections[sectionName]){
+                    stop = sections[sectionName][j]
+                    addStop(stop)
+                }
+
             }
-
+            changeStreetName(streetName)
         }
-        changeStreetName(streetName)
-    }
-    else{
-        changeStreetName("Error! Could not connect to servers!")
-    }
+        else{
+            changeStreetName("Error! Could not connect to servers!")
+        }
     })
     
 }
