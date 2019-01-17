@@ -22,9 +22,13 @@ var items = [{
   }
 ];
 
-var rows = "";
-$.each(items, function() {
-  rows += "<tr><td>" + this.line + "</td><td>" + this.name + "</td><td>" + unixtohms(this.mta_time) + "</td><td>" + unixtohms(this.z_time) + "</td><td>" + unixtohms(this.true_time) + "</td></tr>";
-});
 
-$(rows).appendTo("#itemList tbody");
+$(document).ready(()=>{
+  var rows = ""; 
+
+  $.each(items, function() {
+    rows += "<tr><td>" + this.line + "</td><td>" + this.name + "</td><td>" + unixtohms(this.mta_time) + "</td><td>" + unixtohms(this.z_time) + "</td><td>" + unixtohms(this.true_time) + "</td></tr>";
+  });
+
+  $(rows).appendTo("#itemList tbody");
+})
