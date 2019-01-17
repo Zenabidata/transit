@@ -10,8 +10,10 @@
 }
 
 .bar.bar-positive .title {
-      color: #f6a704;
-     font-weight: bold; }
+    color: #f6a704;
+    font-weight: bold;
+    font-size: 20pt;
+}
 
 #content{
   margin: 0;
