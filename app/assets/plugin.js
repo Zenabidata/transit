@@ -7,7 +7,7 @@ $(document).ready(function(){
 function request(){
     return new Promise((resolve, reject)=>{
         $.get({
-            url: "http://localhost:9876/",
+            url: "http://localhost:9876/clock",
             datatype: 'jsonp',
             success: function(d){
                 console.log(d)
