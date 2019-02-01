@@ -8,7 +8,6 @@ import time
 import logging
 from collections import defaultdict
 
-from protobuf_to_dict import protobuf_to_dict
 from app.utils import (time_of_day_from_unix_ts,
                    time_of_day_from_minutes,
                    day_of_week_from_datestamp,
@@ -27,15 +26,11 @@ def grouped_entities(feed_message):
     yield e1.trip_update, e2.vehicle
   return
 
-months = ['august',
-          'september',
-          'october',
-          'november',
-          'december']
+months = ['2018'+x for x in ('08','09','10','11','12')]
 def build_table():
   basepath = datapath + 'gtfs_realtime/'
   for month in months:
-    month_path = basepath + month + '_2018/'
+    month_path = basepath + month + '/'
     for date in sorted(fname for fname in os.listdir(month_path) if '.' not in fname):
       date_path = month_path + date + '/'
       processed_schedule = defaultdict(dict)
@@ -69,11 +64,13 @@ def build_table():
                   processed_schedule[date + '_' + trip_id][(prev_next_stop[1], 'departure')] = time_of_day_from_unix_ts(prev_next_stop[0])
                 
                 prev_next_stops[trip_id] = next_stop
-
+      if len(processed_schedule) == 0:
+        continue
       ps = ({'trip_id': trip_id, **d} for trip_id, d in processed_schedule.items())
-      ps = pd.DataFrame(ps).set_index('trip_id').sort_index().sort_index(axis=1)
+      ps = pd.DataFrame(ps)
+      ps = ps.set_index('trip_id').sort_index().sort_index(axis=1)
       ps.columns = pd.MultiIndex.from_tuples(ps.columns)
-      ps.to_csv(f'{date}.csv')
+      ps.to_csv(f'~/ssd/trip_tables/{date}.csv')
 
 
 if __name__ == "__main__":
